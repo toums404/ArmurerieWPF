@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="ArmurerieWPF.Views.NouvelleVenteView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Margin="30">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- gauche client -->
+        <StackPanel Grid.Column="0" Margin="0,0,40,0">
+            <TextBlock Text="Informations Client" FontSize="18" FontWeight="Bold" Margin="0,0,0,20"/>
+
+            <TextBlock Text="Nom :" Margin="0,5,0,2"/>
+            <TextBox Text="{Binding NomClient, UpdateSourceTrigger=PropertyChanged}" Padding="5" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Prénom :" Margin="0,5,0,2"/>
+            <TextBox Text="{Binding PrenomClient, UpdateSourceTrigger=PropertyChanged}" Padding="5" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Adresse :" Margin="0,5,0,2"/>
+            <TextBox Text="{Binding AdresseClient, UpdateSourceTrigger=PropertyChanged}" Padding="5" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Email :" Margin="0,5,0,2"/>
+            <TextBox Text="{Binding EmailClient, UpdateSourceTrigger=PropertyChanged}" Padding="5" Margin="0,0,0,20"/>
+
+            <Button Content="Valider le client" Command="{Binding ValiderClientCommand}" Background="#E0E0E0" Padding="10"/>
+        </StackPanel>
+
+        <!-- droite vente -->
+        <StackPanel Grid.Column="1" Margin="40,0,0,0">
+            <TextBlock Text="Détails de la Vente" FontSize="18" FontWeight="Bold" Margin="0,0,0,20"/>
+
+            <TextBlock Text="Arme à vendre :" Margin="0,5,0,2"/>
+            <ComboBox ItemsSource="{Binding ListeArmes}" DisplayMemberPath="Nom" SelectedItem="{Binding ArmeSelectionnee}" Padding="5" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Quantité :" Margin="0,5,0,2"/>
+            <TextBox Text="{Binding Quantite, UpdateSourceTrigger=PropertyChanged}" Padding="5" Margin="0,0,0,40"/>
+
+            <Button Content="Valider la vente" Command="{Binding ValiderVenteCommand}" Background="#F5F5F5" Padding="20,10" HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

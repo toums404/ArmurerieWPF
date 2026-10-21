@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="ArmurerieWPF.Views.FabricationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ArmurerieWPF.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="30">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ZONE GAUCHE : Saisie -->
+        <StackPanel Grid.Column="0" Margin="0,0,40,0">
+            <TextBlock Text="Arme à assembler :" Margin="0,5,0,2"/>
+            <ComboBox ItemsSource="{Binding ListeArmes}" DisplayMemberPath="Nom" SelectedItem="{Binding ArmeSelectionnee}" Padding="5" Margin="0,0,0,30"/>
+
+            <TextBlock Text="Quantité :" Margin="0,5,0,2"/>
+            <TextBox Text="{Binding Quantite, UpdateSourceTrigger=PropertyChanged}" Padding="5" Margin="0,0,0,60"/>
+
+            <Button Content="Assembler l'arme" Command="{Binding FabriquerCommand}" Background="#F5F5F5" Padding="15" Width="150" HorizontalAlignment="Left"/>
+        </StackPanel>
+
+        <!-- ZONE DROITE : Liste des pièces -->
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="Pièces nécessaires :" Margin="0,0,0,5"/>
+            <DataGrid ItemsSource="{Binding PiecesNecessaires}" AutoGenerateColumns="False" IsReadOnly="True" 
+                      Background="White" BorderBrush="#DDDDDD" BorderThickness="1" MinHeight="300">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nom de la Pièce" Binding="{Binding NomPiece}" Width="*" />
+                    <DataGridTextColumn Header="Quantité à utiliser" Binding="{Binding QuantiteTotale}" Width="150" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</UserControl>
